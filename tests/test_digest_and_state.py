@@ -20,6 +20,11 @@ def make_paper(candidate_id: str, title: str = "Agency <Study>") -> Paper:
         open_access_url=None,
         work_type="article",
         cited_by_count=0,
+        study_summary_en="Summary",
+        why_selected_en="Relevant",
+        method_note_en="Method",
+        application_to_phase1_en="Application",
+        caution_en="Limitation",
     )
 
 
@@ -34,11 +39,11 @@ def make_assessment(candidate_id: str, score: int) -> PaperAssessment:
         method_note_zh="方法",
         application_to_phase1_zh="应用",
         caution_zh="限制",
-        study_summary_en="Summary",
-        why_selected_en="Relevant",
-        method_note_en="Method",
-        application_to_phase1_en="Application",
-        caution_en="Limitation",
+        study_summary_en="The study examines prediction feedback and perceived ownership of choice.",
+        why_selected_en="It directly corresponds to the Phase 1 manipulation.",
+        method_note_en="The paper reports a behavioral experiment.",
+        application_to_phase1_en="It may inform improvements to the post-experiment survey.",
+        caution_en="The full paper should be reviewed before drawing conclusions.",
     )
 
 
