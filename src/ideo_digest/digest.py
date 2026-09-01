@@ -89,17 +89,29 @@ def render_html(
                 {_e(paper.publication_date.isoformat())} · {_e(paper.venue or 'Source unavailable')}
               </p>
               <p><span class="tag">{_e(category)}</span><span class="tag">{_e(evidence)}</span></p>
-              <h3>研究内容</h3>
-              <p>{_e(assessment.study_summary_zh)}</p>
-              <h3>为什么值得读</h3>
-              <p>{_e(assessment.why_selected_zh)}</p>
-              <h3>方法提示</h3>
-              <p>{_e(assessment.method_note_zh)}</p>
-              <h3>对 Phase 1 的应用</h3>
-              <p>{_e(assessment.application_to_phase1_zh)}</p>
-              <h3>阅读时注意</h3>
-              <p>{_e(assessment.caution_zh)}</p>
-              <p class="link"><a href="{_e(access_link)}">{_e(access_label)} →</a></p>
+             <h3>研究内容 / Study Summary</h3>
+              <p><strong>中文：</strong>{_e(assessment.study_summary_zh)}</p>
+              <p lang="en"><strong>English:</strong> {_e(assessment.study_summary_en)}</p>
+
+             <h3>为什么值得读 / Why It Matters</h3>
+             <p><strong>中文：</strong>{_e(assessment.why_selected_zh)}</p>
+             <p lang="en"><strong>English:</strong> {_e(assessment.why_selected_en)}</p>
+
+             <h3>方法提示 / Methods Note</h3>
+             <p><strong>中文：</strong>{_e(assessment.method_note_zh)}</p>
+             <p lang="en"><strong>English:</strong> {_e(assessment.method_note_en)}</p>
+
+             <h3>对 Phase 1 的应用 / Application to Phase 1</h3>
+             <p><strong>中文：</strong>{_e(assessment.application_to_phase1_zh)}</p>
+             <p lang="en"><strong>English:</strong> {_e(assessment.application_to_phase1_en)}</p>
+
+             <h3>阅读时注意 / Cautions</h3>
+             <p><strong>中文：</strong>{_e(assessment.caution_zh)}</p>
+             <p lang="en"><strong>English:</strong> {_e(assessment.caution_en)}</p>
+
+             <p class="link">
+             <a href="{_e(access_link)}">查看原文 / Read Source →</a>
+             </p>
             </section>
             """
         )
