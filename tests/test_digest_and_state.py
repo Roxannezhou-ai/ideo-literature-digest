@@ -34,6 +34,11 @@ def make_assessment(candidate_id: str, score: int) -> PaperAssessment:
         method_note_zh="方法",
         application_to_phase1_zh="应用",
         caution_zh="限制",
+        study_summary_en="Summary",
+        why_selected_en="Relevant",
+        method_note_en="Method",
+        application_to_phase1_en="Application",
+        caution_en="Limitation",
     )
 
 
