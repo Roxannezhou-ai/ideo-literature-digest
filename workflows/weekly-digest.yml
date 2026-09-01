@@ -4,7 +4,13 @@ on:
   schedule:
     - cron: "0 9 * * 5"
       timezone: "America/Vancouver"
-  workflow_dispatch:
+    workflow_dispatch:
+    inputs:
+      include_seen:
+        description: "Include already-sent papers for testing"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -44,7 +50,12 @@ jobs:
         run: pytest
 
       - name: Generate and email digest
-        run: ideo-digest
+        run: |
+         if [ "${{ github.event.inputs.include_seen }}" = "true" ]; then
+          ideo-digest --include-seen
+         else
+          ideo-digest
+         fi
 
       - name: Save sent-paper history
         run: |
