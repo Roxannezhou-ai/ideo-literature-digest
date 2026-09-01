@@ -51,17 +51,28 @@ class PaperAssessment(BaseModel):
         "measurement",
         "adjacent",
     ]
-    evidence_type: Literal["empirical", "review", "methods", "preprint", "other"]
+    evidence_type: Literal[
+        "empirical",
+        "review",
+        "methods",
+        "preprint",
+        "other",
+    ]
+
     study_summary_zh: str
-study_summary_en: str
-why_selected_zh: str
-why_selected_en: str
-method_note_zh: str
-method_note_en: str
-application_to_phase1_zh: str
-application_to_phase1_en: str
-caution_zh: str
-caution_en: str
+    study_summary_en: str
+
+    why_selected_zh: str
+    why_selected_en: str
+
+    method_note_zh: str
+    method_note_en: str
+
+    application_to_phase1_zh: str
+    application_to_phase1_en: str
+
+    caution_zh: str
+    caution_en: str
 
 
 class AssessmentBatch(BaseModel):
