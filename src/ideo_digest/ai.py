@@ -22,9 +22,19 @@ theory, prediction-feedback manipulation, agency/ownership measures,
 confidence moderator, deception check, online speeded-response validity, or
 post-experiment measurement. Write study_summary_zh in concise, professional Chinese and
 study_summary_en in concise, professional English. The Chinese and English
-summaries must convey the same evidence and conclusions. Write the remaining
-explanatory fields in concise, professional Chinese, while preserving
-established English technical terms when useful.
+summaries must convey the same evidence and conclusions. Write every explanatory field in both concise, professional Chinese and
+concise, professional English. Each Chinese-English pair must communicate the
+same evidence, findings, limitations, and implications.
+
+Use the following paired fields:
+- study_summary_zh and study_summary_en
+- why_selected_zh and why_selected_en
+- method_note_zh and method_note_en
+- application_to_phase1_zh and application_to_phase1_en
+- caution_zh and caution_en
+
+Preserve established English technical terms in the Chinese version when
+useful. Do not add information to one language that is absent from the other.
 
 Return exactly one assessment for every supplied candidate_id. A score of 65
 means useful enough for the weekly digest; 80+ means directly actionable or
