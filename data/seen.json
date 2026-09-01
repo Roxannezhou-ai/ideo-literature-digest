@@ -1,5 +1,29 @@
 {
   "version": 1,
-  "seen": []
+  "seen": [
+    {
+      "id": "85ec46588053a2974de4",
+      "title": "Risk-taking in automated tasks: The role of sense of agency",
+      "sent_at": "2026-09-01T00:41:44.466016-07:00",
+      "url": "https://doi.org/10.1016/j.actpsy.2026.107681"
+    },
+    {
+      "id": "cb75f1c4fb90252b5e7e",
+      "title": "Sense of agency modulates contextual learning in visual search",
+      "sent_at": "2026-09-01T00:41:44.466016-07:00",
+      "url": "https://doi.org/10.1007/s00426-026-02368-5"
+    },
+    {
+      "id": "3cee14672d6fedd8fd2b",
+      "title": "ABCDE of Deception: A Relational Research Ethics Proposal",
+      "sent_at": "2026-09-01T00:41:44.466016-07:00",
+      "url": "https://doi.org/10.1111/bioe.70178"
+    },
+    {
+      "id": "a2a557b066aa02609129",
+      "title": "Age-related differences in embodying a tool under visual deprivation",
+      "sent_at": "2026-09-01T00:41:44.466016-07:00",
+      "url": "https://doi.org/10.1007/s00221-026-07382-y"
+    }
+  ]
 }
-
