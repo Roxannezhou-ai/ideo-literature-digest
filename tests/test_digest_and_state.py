@@ -29,10 +29,20 @@ def make_assessment(candidate_id: str, score: int) -> PaperAssessment:
         relevance_score=score,
         category="direct_hypothesis",
         evidence_type="empirical",
+
+        study_summary_zh="摘要",
         study_summary_en="The study examines prediction feedback and perceived ownership of choice.",
+
+        why_selected_zh="相关",
         why_selected_en="It directly corresponds to the Phase 1 manipulation.",
+
+        method_note_zh="方法",
         method_note_en="The paper reports a behavioral experiment.",
+
+        application_to_phase1_zh="应用",
         application_to_phase1_en="It may inform improvements to the post-experiment survey.",
+
+        caution_zh="限制",
         caution_en="The full paper should be reviewed before drawing conclusions.",
     )
 
