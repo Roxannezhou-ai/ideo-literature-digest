@@ -43,10 +43,19 @@ def test_dry_run_pipeline_uses_mocks_and_writes_preview(
                     category="direct_hypothesis",
                     evidence_type="empirical",
                     study_summary_zh="研究检验预测反馈与选择所有感。",
+                    study_summary_en="The study examines prediction feedback and perceived ownership of choice.",
+
                     why_selected_zh="直接对应 Phase 1 操纵。",
+                    why_selected_en="It directly corresponds to the Phase 1 manipulation.",
+
                     method_note_zh="行为实验。",
-                    application_to_phase1_zh="可用于完善 post-survey。",
-                    caution_zh="需要阅读全文。",
+                    method_note_en="The paper reports a behavioral experiment.",
+
+                   application_to_phase1_zh="可用于完善 post-survey。",
+                   application_to_phase1_en="It may inform improvements to the post-experiment survey.",
+
+                   caution_zh="需要阅读全文。",
+                   caution_en="The full paper should be reviewed before drawing conclusions.",
                 )
             ]
 
