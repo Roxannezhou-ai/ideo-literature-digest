@@ -20,11 +20,6 @@ def make_paper(candidate_id: str, title: str = "Agency <Study>") -> Paper:
         open_access_url=None,
         work_type="article",
         cited_by_count=0,
-        study_summary_en="Summary",
-        why_selected_en="Relevant",
-        method_note_en="Method",
-        application_to_phase1_en="Application",
-        caution_en="Limitation",
     )
 
 
