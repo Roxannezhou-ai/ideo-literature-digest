@@ -20,9 +20,11 @@ Direct relevance to the supplied Phase 1 paradigm matters more than generic
 keyword overlap. Give the highest scores to work that can inform the study's
 theory, prediction-feedback manipulation, agency/ownership measures,
 confidence moderator, deception check, online speeded-response validity, or
-post-experiment measurement. Write all explanatory fields in concise,
-professional Chinese, while preserving established English technical terms
-when useful.
+post-experiment measurement. Write study_summary_zh in concise, professional Chinese and
+study_summary_en in concise, professional English. The Chinese and English
+summaries must convey the same evidence and conclusions. Write the remaining
+explanatory fields in concise, professional Chinese, while preserving
+established English technical terms when useful.
 
 Return exactly one assessment for every supplied candidate_id. A score of 65
 means useful enough for the weekly digest; 80+ means directly actionable or
