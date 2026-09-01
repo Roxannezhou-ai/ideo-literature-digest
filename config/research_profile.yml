@@ -1,0 +1,91 @@
+project_name: "VCL IDEO Phase 1 Academic Digest"
+timezone: "America/Vancouver"
+
+# This profile guides retrieval and relevance scoring. It is intentionally
+# labelled as a working profile, not as a preregistered hypothesis.
+experiment_overview: >-
+  The 2026 online prediction-feedback Phase 1 study begins with 72 yes/no
+  knowledge questions followed by a SURE versus GUESS confidence judgment.
+  Participants then answer 16 speeded yes/no questions. Predetermined MATCHED
+  or DID NOT MATCH feedback is presented as if it came from a computerized
+  system predicting the participant's next choice. A post-study survey,
+  demographic items, debriefing, deception/suspicion check, surprise rating,
+  and permission to retain the data follow the task.
+
+working_relevance_questions:
+  - >-
+    How can predetermined match/mismatch feedback framed as algorithmic
+    prediction alter perceived agency, ownership, confidence, or
+    external-source attribution over self-generated responses?
+  - >-
+    Do prior confidence (SURE versus GUESS), accuracy, or response speed
+    moderate responses to prediction feedback?
+  - >-
+    How can agency and ideomotor-related effects be measured validly in an
+    online speeded-response experiment that uses deception?
+  - >-
+    Which post-experiment items best detect suspicion, demand
+    characteristics, perceived prediction accuracy, and subjective agency?
+
+priority_topics:
+  - "sense of agency and ownership over choices"
+  - "ideomotor theory and action-effect learning"
+  - "goal-outcome correspondence versus motor prediction"
+  - "prediction feedback and external-source attribution"
+  - "confidence, metacognition, accuracy, and response speed"
+  - "deception, suspicion probes, and demand characteristics"
+  - "online behavioural experiments and browser timing validity"
+  - "post-experiment measurement and manipulation checks"
+
+search_queries:
+  - '"sense of agency" ideomotor action outcome'
+  - '"sense of agency" prediction feedback choice'
+  - 'ideomotor "action effect" learning experiment'
+  - 'goal outcome correspondence motor prediction agency'
+  - 'algorithmic prediction feedback perceived agency human choice'
+  - 'confidence metacognition accuracy speeded choice task'
+  - 'deception suspicion probe demand characteristics online experiment'
+  - 'online behavioral experiment browser timing response time validity'
+  - 'post experiment survey sense of agency manipulation check'
+
+priority_terms:
+  - "sense of agency"
+  - "ideomotor"
+  - "action-effect"
+  - "action effect"
+  - "effect anticipation"
+  - "goal-outcome"
+  - "goal outcome"
+  - "prediction feedback"
+  - "matched feedback"
+  - "external source"
+  - "choice ownership"
+  - "metacognition"
+  - "confidence judgment"
+  - "demand characteristics"
+  - "suspicion probe"
+  - "online experiment"
+  - "browser timing"
+
+exclude_terms:
+  - "industrial motor"
+  - "electric motor"
+  - "motor vehicle"
+  - "search engine marketing"
+  - "robot actuator"
+
+search:
+  lookback_days: 14
+  results_per_query: 25
+  candidate_limit: 18
+  minimum_relevance_score: 65
+  digest_min_items: 3
+  digest_max_items: 5
+  include_work_types:
+    - "article"
+    - "preprint"
+
+email:
+  subject_prefix: "IDEO 每周研究简报"
+  send_when_empty: false
+
