@@ -1,100 +1,133 @@
 # IDEO Academic Literature Digest
 
-这个程序为 UBC Visual Cognition Lab 的 **2026 online prediction-feedback Phase 1** 实验每周检索并筛选学术资料。它会在每周五上午 9:00（温哥华时间）运行，并通过 Gmail 把 3–5 篇最相关的论文发给你。
+This project automatically searches for, filters, and summarizes academic literature relevant to the UBC Visual Cognition Lab's **2026 Online Prediction-Feedback Phase 1** experiment.
 
-## 它会做什么
+The workflow runs every Friday at **9:00 AM Vancouver time** and sends a curated digest of **3–5 highly relevant papers** via Gmail.
 
-1. 使用 OpenAlex 检索最近 14 天发表或上线的论文与 preprint。
-2. 合并多个检索式、根据 DOI/标题去重，并排除以前发过的论文。
-3. 先用关键词和方法信息进行低成本预筛选。
-4. 把最多 18 篇候选论文的公开元数据和摘要交给 OpenAI 评估。
-5. 选择相关性最高且达到门槛的 3–5 篇，生成中文研究简报。
-6. 通过 Gmail 给同一个 Gmail 地址发送 HTML + 纯文本邮件。
-7. 更新 `data/seen.json`，防止以后重复推送。
+## What It Does
 
-程序不会下载或转发付费论文全文，也不会绕过出版社的访问限制。邮件会提供 DOI、OpenAlex 或合法开放获取页面。
+1. Searches OpenAlex for recently published papers and preprints from the past 14 days.
+2. Combines results from multiple search queries, removes duplicates based on DOI and title, and excludes papers that have already been sent.
+3. Performs a lightweight pre-screening using keywords and methodological information.
+4. Sends the public metadata and abstracts of up to 18 candidate papers to OpenAI for relevance evaluation.
+5. Selects the 3–5 most relevant papers that meet the configured relevance threshold and generates a research digest.
+6. Sends the digest to the configured Gmail address in both HTML and plain-text formats.
+7. Updates `data/seen.json` so previously included papers are not recommended again.
 
-## 当前实验相关性标准
+The program does **not** download, reproduce, or distribute paywalled full-text articles, nor does it bypass publisher access restrictions. Instead, the digest provides DOI links, OpenAlex pages, or legitimate open-access sources whenever available.
 
-`config/research_profile.yml` 中记录的是用于检索和筛选的 **working relevance profile**，不是替代实验 preregistration 的正式假设。它基于目前的 Phase 1 流程：
+## Current Experimental Relevance Profile
 
-- 72 道 Yes/No 知识判断题，并记录 `SURE` / `GUESS`；
-- 16 道限时 Yes/No 题；
-- 将预设的 `MATCHED` / `DID NOT MATCH` 反馈描述为电脑预测系统的结果；
-- post-survey、demographics、debrief、deception/suspicion check；
-- 重点关注 sense of agency、ideomotor theory、action–effect learning、prediction feedback、confidence/metacognition、deception check，以及线上反应时实验的方法质量。
+The file `config/research_profile.yml` contains the project's **working relevance profile** used for literature retrieval and screening. It is intended to guide the automated search process and should not be treated as a replacement for the experiment's formal preregistration or hypotheses.
 
-以后实验假设或流程变化时，只需编辑这个 YAML 文件，不需要修改 Python 代码。
+The current profile is based on the Phase 1 procedure, which includes:
 
-## GitHub 设置（第一次约 10–15 分钟）
+- 72 Yes/No knowledge-judgment questions, with participants also indicating `SURE` or `GUESS`;
+- 16 timed Yes/No questions;
+- predetermined `MATCHED` / `DID NOT MATCH` feedback presented as the output of a computer prediction system;
+- a post-survey, demographic questions, debriefing, and deception/suspicion checks;
+- research topics including sense of agency, ideomotor theory, action–effect learning, prediction feedback, confidence and metacognition, deception checks, and methodological quality in online reaction-time experiments.
 
-### 1. 创建仓库
+If the experimental hypotheses or procedure change, the relevance profile can be updated directly in the YAML file without modifying the Python code.
 
-在 GitHub 创建一个 **Private repository**，例如 `ideo-literature-digest`，然后把本项目的所有文件上传到仓库根目录。建议使用 private repository，因为配置文件包含尚在进行的实验设计背景。
+## GitHub Setup
 
-### 2. 准备 OpenAI API key
+Initial setup takes approximately 10–15 minutes.
 
-在 OpenAI API 平台创建 API key，并确保 API 账户已配置可用额度。ChatGPT 订阅和 API 计费是不同的产品账户体系。
+### 1. Create the Repository
 
-程序默认使用 `gpt-5.6-terra`，在质量和成本之间取得平衡。若希望降低费用，可在 GitHub Repository Variables 中设置：
+Create a **private GitHub repository**, for example:
+
+```text
+ideo-literature-digest
+```
+
+Upload all project files to the repository root.
+
+A private repository is recommended because the configuration files contain contextual information about an ongoing research project.
+
+### 2. Prepare an OpenAI API Key
+
+Create an API key through the OpenAI API platform and make sure the API account has available billing or credits.
+
+Note that a ChatGPT subscription and OpenAI API billing are separate services.
+
+The project uses `gpt-5.6-terra` by default to balance output quality and cost.
+
+To reduce API costs, you can override the default model by creating a GitHub Repository Variable:
 
 ```text
 OPENAI_MODEL = gpt-5.6-luna
 ```
 
-程序每周只进行一次批量 AI 评估，且最多输入 18 篇候选论文的摘要。
+The workflow performs only one batch AI evaluation per week and evaluates a maximum of 18 candidate paper abstracts per run.
 
-### 3. 创建 Gmail App Password
+### 3. Create a Gmail App Password
 
-不要使用 Gmail 主密码。
+Do **not** use your regular Gmail password.
 
-1. 在 Google Account 中启用 **2-Step Verification**。
-2. 打开 Google Account 的 **App passwords** 页面。
-3. 创建一个用于本程序的 16 位 App Password。
-4. 复制该 App Password；添加到 GitHub 时可以保留或去掉空格，程序会自动清理空格。
+1. Enable **2-Step Verification** in your Google Account.
+2. Open the Google Account **App passwords** page.
+3. Create a 16-character App Password for this project.
+4. Copy the generated password.
 
-部分学校/公司管理的 Google Workspace、Advanced Protection 账户或只使用 security key 的账户可能不提供 App Password。这种情况下需要改用 Gmail OAuth，当前第一版暂未包含该模式。
+Spaces in the App Password can be kept or removed when adding it to GitHub; the program automatically removes them before authentication.
 
-### 4. 添加 GitHub Secrets
+Some managed Google Workspace accounts, Advanced Protection accounts, or accounts configured exclusively with security keys may not support App Passwords.
 
-进入仓库：
+In those cases, Gmail OAuth would be required. OAuth authentication is not included in the current version of this project.
 
-`Settings → Secrets and variables → Actions → New repository secret`
+### 4. Add GitHub Secrets
 
-添加以下三个必需 Secrets：
+In your repository, go to:
 
-| Secret | 内容 |
+```text
+Settings → Secrets and variables → Actions → New repository secret
+```
+
+Add the following required secrets:
+
+| Secret | Description |
 | --- | --- |
-| `OPENAI_API_KEY` | OpenAI API key |
-| `EMAIL_ADDRESS` | 用来发送并接收简报的 Gmail 地址 |
-| `GMAIL_APP_PASSWORD` | Gmail 16 位 App Password |
+| `OPENAI_API_KEY` | Your OpenAI API key |
+| `EMAIL_ADDRESS` | Gmail address used to send and receive the digest |
+| `GMAIL_APP_PASSWORD` | Your 16-character Gmail App Password |
 
-可选：
+Optional configuration:
 
-| Secret / Variable | 用途 |
+| Secret / Variable | Purpose |
 | --- | --- |
-| `OPENALEX_API_KEY` Secret | 提高 OpenAlex API 日限额；每周任务通常不需要 |
-| `OPENAI_MODEL` Variable | 覆盖默认模型，例如 `gpt-5.6-luna` |
+| `OPENALEX_API_KEY` Secret | Increases the OpenAlex API daily request allowance; normally unnecessary for a weekly workflow |
+| `OPENAI_MODEL` Variable | Overrides the default OpenAI model, e.g. `gpt-5.6-luna` |
 
-Secrets 不会出现在代码或邮件内容中。
+GitHub Secrets are not exposed in the source code or included in generated emails.
 
-### 5. 第一次手动测试
+### 5. Run the First Manual Test
 
-1. 打开仓库的 **Actions** 页面。
-2. 选择 **Weekly IDEO literature digest**。
-3. 点击 **Run workflow**。
-4. 确认运行成功，并检查 Gmail 收件箱和 Spam。
+1. Open the repository's **Actions** tab.
+2. Select **Weekly IDEO literature digest**.
+3. Click **Run workflow**.
+4. Confirm that the workflow completes successfully.
+5. Check both the Gmail inbox and Spam folder for the digest.
 
-之后 workflow 会按照以下本地时间自动执行：
+After the initial test, the workflow runs automatically according to the following local schedule:
 
 ```yaml
 cron: "0 9 * * 5"
 timezone: "America/Vancouver"
 ```
 
-GitHub 的定时任务可能因平台负载稍有延迟。定时 workflow 必须存在于 default branch；如果使用 public repository 且 60 天没有活动，GitHub 可能自动暂停 schedule，因此本项目建议 private repository。
+This corresponds to **9:00 AM every Friday in Vancouver time**.
 
-## 在电脑上测试（可选）
+GitHub Actions scheduled workflows may occasionally run slightly later than the specified time because of platform load.
+
+The scheduled workflow must also exist on the repository's default branch. GitHub may automatically disable scheduled workflows in public repositories after prolonged inactivity, so a private repository is recommended for this project.
+
+## Local Testing
+
+Local testing is optional.
+
+Create and activate a Python virtual environment:
 
 ```bash
 python3 -m venv .venv
@@ -103,7 +136,7 @@ pip install -e ".[dev]"
 cp .env.example .env
 ```
 
-填写 `.env` 后，将其中的值加载到当前终端：
+After filling in `.env`, load the environment variables into the current terminal session:
 
 ```bash
 set -a
@@ -111,59 +144,80 @@ source .env
 set +a
 ```
 
-先生成报告但不发邮件：
+Generate a digest without sending an email:
 
 ```bash
 ideo-digest --dry-run --lookback-days 90
 ```
 
-正式发送：
+Run the workflow and send the email:
 
 ```bash
 ideo-digest
 ```
 
-运行测试：
+Run the test suite:
 
 ```bash
 pytest
 ```
 
-## 调整检索范围
+## Adjusting the Literature Search
 
-编辑 `config/research_profile.yml`：
+The literature retrieval and filtering behaviour can be adjusted through:
 
-- `search_queries`：实际发送给 OpenAlex 的检索式；
-- `priority_terms`：本地预筛选加分词；
-- `exclude_terms`：明显无关领域的降分词；
-- `lookback_days`：默认回看天数；
-- `candidate_limit`：送给 OpenAI 的候选上限；
-- `minimum_relevance_score`：进入邮件的 AI 评分门槛；
-- `digest_min_items` / `digest_max_items`：目标论文数。
+```text
+config/research_profile.yml
+```
 
-首次运行可以临时扩大搜索窗口：
+Important configuration fields include:
+
+- `search_queries` — search queries sent to OpenAlex;
+- `priority_terms` — keywords that increase the local pre-screening score;
+- `exclude_terms` — terms associated with clearly unrelated research areas;
+- `lookback_days` — default number of days included in the search window;
+- `candidate_limit` — maximum number of candidate papers sent to OpenAI;
+- `minimum_relevance_score` — minimum AI relevance score required for inclusion;
+- `digest_min_items` / `digest_max_items` — target number of papers included in each digest.
+
+For the first run, the search window can temporarily be expanded:
 
 ```bash
 ideo-digest --lookback-days 180
 ```
 
-## 邮件中每篇论文包含
+## Information Included for Each Paper
 
-- 原始英文标题、作者、日期、期刊/来源和链接；
-- 论文类型与和项目的相关性分数；
-- 中文研究摘要；
-- 为什么与 Phase 1 直接相关；
-- 可以如何影响实验设计、post-survey 或分析；
-- 根据摘要能够判断的限制与风险。
+Each paper in the email digest includes:
 
-AI 只会看到公开论文元数据、摘要和 `research_profile.yml` 中的实验简介。**不要把参与者姓名、HSP ID、原始作答或任何可识别研究数据写入配置文件。**
+- original English title;
+- authors;
+- publication date;
+- journal or source;
+- paper link;
+- publication type;
+- relevance score;
+- a concise research summary;
+- an explanation of why the paper is relevant to Phase 1;
+- potential implications for experimental design, post-survey measures, or analysis;
+- methodological limitations or risks that can be identified from the available abstract and metadata.
 
-OpenAI 请求设置为 `store=False`；程序本身只在仓库的 `data/seen.json` 中保存已发送论文的 ID、标题、链接和发送时间。
+The AI component only receives publicly available paper metadata, abstracts, and the experimental description contained in `research_profile.yml`.
 
-## 使用的官方文档
+**Do not include participant names, HSP IDs, raw responses, or any other identifiable research data in the configuration file.**
 
-- [OpenAI Responses API – text generation](https://developers.openai.com/api/docs/guides/text)
+OpenAI requests are configured with:
+
+```text
+store=False
+```
+
+The application itself only stores information about previously recommended papers in `data/seen.json`, including paper IDs, titles, links, and the date they were sent.
+
+## Official Documentation
+
+- [OpenAI Responses API – Text Generation](https://developers.openai.com/api/docs/guides/text)
 - [OpenAI Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs)
-- [OpenAlex API reference](https://help.openalex.org/api/)
-- [GitHub Actions scheduled workflows](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)
+- [OpenAlex API Reference](https://help.openalex.org/api/)
+- [GitHub Actions Scheduled Workflows](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)
 - [Google Account App Passwords](https://support.google.com/accounts/answer/185833)
